@@ -1,0 +1,57 @@
+---
+title: "Homework08"
+output: html_document
+---
+
+# HW08: Using and building packages in R.
+
+##Getting my home computer ready for package production
+One of the perils of havign two computers to work on (after conflicting directory palths as I discovered last class) is that I need to get softwere thigns up twice.  That's ok, more practise right?
+
+So first off I need to [configure for package devel](https://stat545-ubc.github.io/packages01_system-prep.html)
+
+###1. I check version
+Am I using the latest version of RStudio, Version 0.99.486 no new updates.  So I think that step is done.
+
+###2. I install `devtools`
+```{r}
+install.packages("devtools")
+library(devtools)
+```
+
+###3. I download and install RTools.  
+After waiting for a bit for things to install I restart and check that everything is going smoothly.
+
+```{r}
+library(devtools)
+find_rtools()
+
+has_devel()
+```
+
+###4. Other packages 
+
+This needs some other packages apparently so I'll make sure I've got those.
+```{r}
+install.packages("roxygen2")
+install.packages("testthat")
+install.packages("knitr")
+```
+
+## Package Initiation
+Now I want to create the folder that will hold the package.
+
+```{r}
+library(devtools)
+create("~/foofactors")
+```
+
+Hmm, that isn't where I thought it would go.  I thought the `~` would put it in as subdirectory of my current wd.  But instead it went to my general `Documents` folder.  Booo.
+
+```{r}
+wd <- getwd()
+create(sprintf("%s/foofactors",wd))
+```
+
+That seems to have done the ticket!  Much better.
+But I think the .Rproj file is redundant since I've already got one. I'll deleat it and hope someone will help me when that results in calamity.
